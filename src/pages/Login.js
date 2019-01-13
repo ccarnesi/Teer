@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {createStackNavigator} from 'react-navigation';
+
 import {
   StyleSheet,
   Text,
@@ -35,6 +35,10 @@ export default class Login extends Component {
     signUpPressed(){
         this.props.navigation.navigate("SignUp");
     }
+
+    static navigationOptions = {
+        header: null
+    }
     
     
     
@@ -46,7 +50,7 @@ export default class Login extends Component {
                 </View>
                     
 
-                <Container>
+                <View>
                         <TextInput
                             style={{
                                 height: 60, 
@@ -59,7 +63,7 @@ export default class Login extends Component {
                                 placeholder = "Username"
                                 placeholderTextColor = "#fff"
                         />
-                </Container>
+                </View>
 
                 <View>
                     
@@ -96,7 +100,7 @@ export default class Login extends Component {
                     <View style = {styles.dontHaveAccount}>
                         <Text style = {{fontSize: 20, color: "#fff"}}>Don't have an account? </Text>
                         <SignUpButton 
-                            onPress={() => this.props.navigation.navigate('SignUp')}
+                            onPress={() => this.props.navigation.navigate('SignUpScreen')}
                             label="Sign Up"
                             styles={{label: styles.buttonYellowText}} 
                         />

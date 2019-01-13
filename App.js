@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import{AppRegistry} from 'react-native'
-
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import Login from './src/pages/Login';
 import SignUp from './src/pages/SignUp';
@@ -20,13 +20,14 @@ import SignUp from './src/pages/SignUp';
     'Shake or press menu button for dev menu',
 });*/
 
-export default class LoginPage extends Component {
-  render() {
-    return (
-      <Login/>
-    );
+const AppNavigator = createStackNavigator(
+  {
+    LoginScreen: Login,
+    SignUpScreen: SignUp
+  },
+  {
+    initialRouteName: "LoginScreen"
   }
-}
-AppRegistry.registerComponent('LoginPage', () => LoginPage);
+);
 
-
+export default createAppContainer(AppNavigator);
