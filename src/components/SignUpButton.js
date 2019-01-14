@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         justifyContent: 'center',
+        fontSize: 15
     },
 });
  

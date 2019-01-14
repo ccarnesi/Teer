@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  ScrollView,
   Image,
   TouchableHighlight,
-  Alert
+  Alert,
+  TextInput
 } from 'react-native';
  
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import Container from '../components/Container'; //adds bottom margin to whatever it wraps
-//with this, you do not have to apply same styles to view multiple times
-import Button from '../components/Button';
-import Label from '../components/Label';
 import SignUpButton from '../components/SignUpButton';
-
+import TextFieldBox from '../components/TextFieldBox';
 
 export default class Login extends Component {
     state = {username:"",password:""}
@@ -44,61 +37,39 @@ export default class Login extends Component {
     
     render() {
         return (
-            <ScrollView style={styles.scroll}>
+            <View style = {styles.mainContainer}>
                 <View style = {styles.imageView}>
                     <Image source = {require('./images/TeerHome-01.jpg')} style = {styles.logoStyle}/>
                 </View>
                     
 
-                <View>
-                        <TextInput
-                            style={{
-                                height: 60, 
-                                fontSize: 25, 
-                                borderRadius: 30, 
-                                backgroundColor: '#048c84', 
-                                borderWidth: 1,
-                                textAlign: "center", 
-                                borderColor: '#5CB9A2'}}
-                                placeholder = "Username"
-                                placeholderTextColor = "#fff"
-                        />
-                </View>
-
-                <View>
-                    
-                    <TextInput
-                                style={{
-                                    height: 60, 
-                                    fontSize: 25, 
-                                    borderRadius: 30, 
-                                    backgroundColor: '#048c84', 
-                                    borderWidth: 1,
-                                    textAlign: "center", 
-                                    borderColor: '#5CB9A2'}}
-                                    placeholder = "Password"
-                                    placeholderTextColor = "#fff"
-                                    secureTextEntry = "true"
-                        />
-                </View>
-
-                <Container>
-                    <Button 
-                        label="Forgot Password?"
-                        styles={{button: styles.alignCenter, label: styles.label}} 
-                        />
-                </Container>
-                <View>
-                    <Container>
-                        <TouchableHighlight style = {{button: styles.primaryButton, label: styles.buttonWhiteText}} onPress={_=>this.checkLogin()} >
-                            <Text style={styles.submitText}>Sign In</Text>
-                        </TouchableHighlight>
+                <View style = {styles.formContainer}>
+                        <View style = {styles.inputContainer}>
+                            <View style = {styles.inputStyle}>
+                                <TextInput style={styles.loginInputs} placeholder = 'Username' placeholderTextColor='white'/>
+                            </View>
+                            <View style = {styles.inputStyle}>
+                                <TextInput style={styles.loginInputs} placeholder = 'Password' placeholderTextColor='white'/>
+                            </View>
+                            
+                        </View>
                         
-                    </Container>
+
+                        <TouchableHighlight style = {styles.forgotPassButton}  >
+                            <Text style={styles.forgotPassText}>Forgot Password?</Text>
+                        </TouchableHighlight>
+                        <View style = {styles.signInButtonContainer}>
+                            <TouchableHighlight style = {styles.primaryButton} onPress={_=>this.checkLogin()} >
+                                <Text style={styles.submitText}>Sign In</Text>
+                            </TouchableHighlight>
+                        </View>
+                        
+
                 </View>
+
                 <View style = {styles.footer}>
                     <View style = {styles.dontHaveAccount}>
-                        <Text style = {{fontSize: 20, color: "#fff"}}>Don't have an account? </Text>
+                        <Text style = {{fontSize: 15, color: "#fff"}}>Don't have an account? </Text>
                         <SignUpButton 
                             onPress={() => this.props.navigation.navigate('SignUpScreen')}
                             label="Sign Up"
@@ -107,57 +78,64 @@ export default class Login extends Component {
                     </View>
                 </View>
                 
-            </ScrollView>
+            </View>
         );
     }
 }
   const styles = StyleSheet.create({
-    scroll: {
-    backgroundColor: '#048c84',
-        padding: 30,
+    mainContainer: {
+        backgroundColor: '#048c84',
+        flex:1,
         flexDirection: 'column'
     },
-    label: {
-        color: '#fff',
-        fontSize: 20
+    inputStyle: {
+       paddingBottom: 20
     },
-    alignCenter: {
-        alignSelf: 'center'
+    formContainer:{
+        flex: 10,
+        paddingHorizontal: 50,
+        justifyContent: "center"
+        
     },
-    textInput: {
-        height: 80,
-        fontSize: 30,
-        backgroundColor: '#FFF'
+    imageView:{
+        flex: 6,
+        alignItems: "center",
+        justifyContent: "flex-end",
+
     },
-    transparentButton: {
-        marginTop: 30,
-        borderColor: '#3B5699',
-        borderWidth: 2
+    
+    forgotPassButton: {
+        backgroundColor: '#048c84',
+        alignSelf: "center",
     },
-    buttonBlueText: {
-        fontSize: 20,
-        color: '#3B5699'
+    forgotPassText: {
+        color: 'white'
     },
-    buttonBigText: {
-        fontSize: 20,
-        fontWeight: 'bold'
+    signInButtonContainer: {
+        paddingTop: 40
     },
-    inline: {
-        flexDirection: 'row'
+    loginInputs: {
+        height: 50,
+        fontSize: 20, 
+        borderRadius: 30, 
+        backgroundColor: '#048c84', 
+        borderWidth: 1,
+        borderColor: '#5CB9A2',
+        paddingHorizontal: 20
     },
-    buttonWhiteText: {
-        fontSize: 20,
-        color: '#FFF',
-    },
+
     buttonYellowText: {
-        fontSize: 20,
+        fontSize: 15,
         color: '#F7D35A'
     },
     primaryButton: {
-        backgroundColor: '#34A853'
+        backgroundColor: '#048c84',
+        fontSize: 20,
+        color: '#FFF',
     },
     footer: {
-       marginTop: 100
+       marginTop: 100,
+       flex: 2
     },
     submitText:{
         paddingTop:20,
@@ -173,14 +151,11 @@ export default class Login extends Component {
         
     },
     logoStyle:{
-        width: 193,
-        height: 110,
-        alignSelf: "center"
+        width: 220,
+        height: 120,
+        alignItems: "center",
+        justifyContent: "center"
         
-    },
-    imageView:{
-        paddingTop: 80,
-        paddingBottom: 80
     },
     dontHaveAccount:{
         flexDirection: "row",
