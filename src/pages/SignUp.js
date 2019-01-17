@@ -40,7 +40,7 @@ export default class Login extends Component {
                                                       
                         <TextFieldBox inputType = 'Confirm Password' isPassword = 'true'/>
                    
-                    <TouchableHighlight style = {{button: styles.primaryButton, label: styles.buttonWhiteText}}>
+                    <TouchableHighlight style = {styles.primaryButton}>
                         <Text style={styles.submitText}>Sign Up</Text>
                     </TouchableHighlight>
                     
@@ -49,7 +49,7 @@ export default class Login extends Component {
                     <View style = {styles.dontHaveAccount}>
                         <Text style = {{fontSize: 15, color: "#fff"}}>Have an account? </Text>
                         <SignUpButton 
-                            onPress={() => this.props.navigation.goBack()}
+                            onPress={() => this.props.navigation.navigate('LoginScreen')}
                             label="Sign in"
                             styles={{label: styles.buttonYellowText}} 
                         />
@@ -61,12 +61,12 @@ export default class Login extends Component {
     
 }
 const styles = StyleSheet.create({
-    buttonWhiteText: {
+    
+    primaryButton: {
+        backgroundColor: '#048c84',
+        width: 260,
         fontSize: 20,
         color: '#FFF',
-    },
-    primaryButton: {
-        backgroundColor: '#34A853',
        
     },
     mainContainer: {
@@ -87,12 +87,13 @@ const styles = StyleSheet.create({
         
     },
     inputView: {
-        paddingBottom: 20
+        paddingBottom: 20,
+        width: 260
     },
     formContainer: {
         flex: 5,
-        paddingHorizontal: 50,
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        alignItems: 'center',
     },
     logoStyle:{
         width: 220,
@@ -107,7 +108,8 @@ const styles = StyleSheet.create({
     },
     dontHaveAccount:{
         flexDirection: "row",
-        justifyContent: "center"
+        justifyContent: "center",
+        
     },
     footer: {
         marginTop: 75,

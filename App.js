@@ -12,6 +12,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import Login from './src/pages/Login';
 import SignUp from './src/pages/SignUp';
+import ForgotPassword from './src/pages/ForgotPassword';
 
 /*const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,7 +24,8 @@ import SignUp from './src/pages/SignUp';
 const AppNavigator = createStackNavigator(
   {
     LoginScreen: Login,
-    SignUpScreen: SignUp
+    SignUpScreen: SignUp,
+    ForgotPassScreen: ForgotPassword
   },
   {
     initialRouteName: "LoginScreen"

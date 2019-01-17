@@ -11,7 +11,6 @@ import {
 } from 'react-native';
  
 import SignUpButton from '../components/SignUpButton';
-import TextFieldBox from '../components/TextFieldBox';
 
 export default class Login extends Component {
     state = {username:"",password:""}
@@ -37,7 +36,7 @@ export default class Login extends Component {
     
     render() {
         return (
-            <View style = {styles.mainContainer}>
+            <KeyboardAwareScrollView style={{ backgroundColor: '#4c69a5' }} resetScrollToCoords={{ x: 0, y: 0 }} contentContainerStyle={styles.mainContainer} scrollEnabled={false}>
                 <View style = {styles.imageView}>
                     <Image source = {require('./images/TeerHome-01.jpg')} style = {styles.logoStyle}/>
                 </View>
@@ -55,7 +54,7 @@ export default class Login extends Component {
                         </View>
                         
 
-                        <TouchableHighlight style = {styles.forgotPassButton}  >
+                        <TouchableHighlight style = {styles.forgotPassButton} onPress={() => this.props.navigation.navigate('ForgotPassScreen')} >
                             <Text style={styles.forgotPassText}>Forgot Password?</Text>
                         </TouchableHighlight>
                         <View style = {styles.signInButtonContainer}>
@@ -78,7 +77,7 @@ export default class Login extends Component {
                     </View>
                 </View>
                 
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
@@ -89,11 +88,12 @@ export default class Login extends Component {
         flexDirection: 'column'
     },
     inputStyle: {
-       paddingBottom: 20
+       paddingBottom: 20,
+       width: 260
     },
     formContainer:{
         flex: 10,
-        paddingHorizontal: 50,
+        alignItems: 'center',
         justifyContent: "center"
         
     },
@@ -131,6 +131,7 @@ export default class Login extends Component {
     primaryButton: {
         backgroundColor: '#048c84',
         fontSize: 20,
+        width: 260,
         color: '#FFF',
     },
     footer: {

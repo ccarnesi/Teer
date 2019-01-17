@@ -18,7 +18,8 @@ class TextFieldBox extends Component {
 
 const styles = StyleSheet.create({
     textInputstyle: {
-        height: '40%', 
+        height: 50,
+        width: 260, 
         fontSize: 20, 
         borderRadius: 30, 
         backgroundColor: '#048c84', 
